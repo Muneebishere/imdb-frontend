@@ -1,0 +1,15 @@
+export const BASE_URL = 'http://localhost:3000';
+export const API_URL = BASE_URL + '/api/v1';
+export const LOGIN_URL = BASE_URL + '/auth/sign_in'
+export const LOGOUT_URL = BASE_URL + '/auth/sign_out'
+export const FILMS_URL = API_URL + '/films'
+export const MOVIES_URL = API_URL + '/movies'
+export const TV_SHOWS_URL = API_URL + '/tv_shows'
+export const GENRES_URL = API_URL + '/genres'
+export const CELEBRITY_URL = API_URL + '/celebrities'
+export const WATCHLIST_URL = API_URL + '/watchlist_shows'
+export const WATCHLIST_COUNT_URL = API_URL + '/users/watchlist_shows_count'
+export const WATCHLIST_FILMS_IDS_URL = API_URL + '/users/watchlist_films_ids'
+export const UPDATE_WATCHLIST_URL = API_URL + '/users/update_watchlist_shows'
+export const WATCHLIST_SEASON_IDS_URL = API_URL + '/users/watchlist_seasons_ids'
+export const WATCHLIST_EPISODE_IDS_URL = API_URL + '/users/watchlist_episodes_ids'
