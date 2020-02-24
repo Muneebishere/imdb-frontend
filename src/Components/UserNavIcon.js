@@ -31,7 +31,7 @@ export default function UserNavIcon(props){
         onClick={handleMenu}
         className={classes.noTextTransform}
       >
-        {localStorage.getItem("full_name")}
+        {props.user.first_name + " " + props.user.last_name}
       </Button>
       <Menu
         id="menu-appbar"
@@ -48,7 +48,7 @@ export default function UserNavIcon(props){
         open={open}
         onClose={handleClose}
         >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem disabled onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={logoutUser}>Logout</MenuItem>
       </Menu>
     </div>);

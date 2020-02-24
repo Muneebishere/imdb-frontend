@@ -13,7 +13,7 @@ import { filmDetail } from '../Assets/styles/filmDetail';
 import Typography from '@material-ui/core/Typography';
 import AuthDialog from '../Components/AuthDialog';
 import history from '../history';
-import * as Auth from '../services/Util';
+import { withRouter } from "react-router-dom";
 
 class Detail extends Component {
   constructor(props){
@@ -33,6 +33,7 @@ class Detail extends Component {
       const {tv_show_id, season_id, id} = this.props.match.params;
       http.getEpisodeDetails(tv_show_id, season_id, id)
       .then(res => {
+        console.log(res)
         this.setState({
           film: res.data.episode,
           on_watchlist: res.data.on_watchlist,
@@ -43,6 +44,7 @@ class Detail extends Component {
       const {tv_show_id, id} = this.props.match.params;
       http.getSeasonDetails(tv_show_id, id)
       .then(res => {
+        console.log(res)
         this.setState({
           film: res.data.season,
           on_watchlist: res.data.on_watchlist,
@@ -50,7 +52,7 @@ class Detail extends Component {
         })
       })
 
-      if(Auth.isSignedIn()){
+      if(this.props.loginStatus){
         http.getWatchlistEpisodeIds()
         .then(res => {
           this.setState({episodes_on_watchlist: res.data.watchlist_ids})
@@ -67,7 +69,7 @@ class Detail extends Component {
         })
       })
 
-      if(Auth.isSignedIn()){
+      if(this.props.loginStatus){
         http.getWatchlistSeasonIds()
         .then(res => {
           this.setState({seasons_on_watchlist: res.data.watchlist_ids})
@@ -114,11 +116,16 @@ class Detail extends Component {
   };
 
   goToSignup = () => {
+    history.push('/signup')
+    this.setState({dialogOpen: false})
+  };
+
+  handleClose = () => {
     this.setState({dialogOpen: false})
   };
 
   addToWatchlist = (type, id) => {
-    if(Auth.isSignedIn()){
+    if(this.props.loginStatus){
       var params = {
         "add": true,
         "type": type,
@@ -174,6 +181,7 @@ class Detail extends Component {
   }
 
   render(){
+    console.log(this.props)
     const { classes } = this.props;
     if(this.state.film){
       const film = this.state.film
@@ -193,6 +201,7 @@ class Detail extends Component {
                 nextClickHandle={this.handleNextClick}
                 prevClickHandle={this.handlePrevClick}
                 on_watchlist={this.state.on_watchlist}
+                number={this.state.film.number}
                 addToWatchlist={this.addToWatchlist}
                 removeFromWatchlist={this.removeFromWatchlist}/>
               <DescriptionCard roles={film.celebrity_show_roles} plot={film.show_detail.plot}/>
@@ -238,7 +247,12 @@ class Detail extends Component {
               <ReviewList reviews={film.reviews}/>
             </Grid>
           </Grid>
-          <AuthDialog open={this.state.dialogOpen} goToLogin={this.goToLogin} goToSignup={this.goToSignup} />
+          <AuthDialog 
+            open={this.state.dialogOpen} 
+            goToLogin={this.goToLogin} 
+            goToSignup={this.goToSignup} 
+            handleClose={this.handleClose}
+          />
         </div>
       )
     } else {
@@ -251,4 +265,4 @@ Detail.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(filmDetail)(Detail);
+export default withRouter(withStyles(filmDetail)(Detail));

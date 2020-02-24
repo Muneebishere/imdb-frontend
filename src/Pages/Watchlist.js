@@ -7,6 +7,8 @@ import WatchListGrid from '../Components/FilmGridList'
 import Card from '@material-ui/core/Card';
 import { watchlist } from '../Assets/styles/watchlist';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import history from '../history'
 
 class Watchlist extends Component { 
   constructor(props){
@@ -126,11 +128,29 @@ class Watchlist extends Component {
     })
   }
 
+  goToHome = () => {
+    history.push("/")
+  } 
+
+  watchlistEmpty = () => {
+    return(this.props.watchlistCount === 0)
+  }
+
   render() {
     const { classes } = this.props;
 
     return(
       <div className="m-5">
+        { this.watchlistEmpty() &&
+          <Grid container alignItems="center" direction="column" justify="center">
+            <Typography variant="h5" className={classes.title} gutterBottom>
+              There are currently no shows in your watchlist.
+            </Typography>
+            <Button color="primary" onClick={this.goToHome} className={classes.button}>
+              Go to HomePage
+            </Button>
+          </Grid>
+        }
         { this.state.movies.length > 0 && (
           <Card className={`pt-3 pb-3 ${classes.card}`}>
             <Typography variant="h5" align="center" className={classes.title} gutterBottom>
