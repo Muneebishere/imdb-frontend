@@ -7,14 +7,16 @@ export default class ImageDropzoneDialog extends Component {
     return (
       <div>
         <Button onClick={this.props.handleOpen}>
-          Add Image
+          Add Avatar
         </Button>
         <DropzoneDialog
           open={this.props.open}
           onSave={this.props.handleSave}
           acceptedFiles={['image/jpeg', 'image/png', 'image/bmp']}
           showPreviews={true}
+          showPreviewsInDropzone={true}
           maxFileSize={5000000}
+          filesLimit={1}
           onClose={this.props.handleClose}
         />
       </div>

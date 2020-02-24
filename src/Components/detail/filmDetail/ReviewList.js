@@ -14,7 +14,7 @@ export default function AlignItemsList(props) {
   const classes = reviewList();
 
   return (
-    <div className="mb-5 mt-5">
+    <div className={`mb-5 ${classes.container}`}>
     <Card className={classes.root}>
       <List subheader={<ListSubheader className={classes.subHeading}>Reviews ({props.reviews.length})</ListSubheader>} className={classes.root}>
         {

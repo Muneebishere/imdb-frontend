@@ -3,13 +3,15 @@ import { themeColor, boxShadow } from './theme'
 
 export const reviewList = makeStyles(theme => ({
   root: {
-    width: 'inherit',
     maxWidth: 640,
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
     maxHeight: 500,
     boxShadow: boxShadow
+  },
+  container: {
+    width: '50%'
   },
   inline: {
     display: 'inline',

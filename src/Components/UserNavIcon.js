@@ -31,7 +31,7 @@ export default function UserNavIcon(props){
         onClick={handleMenu}
         className={classes.noTextTransform}
       >
-        Herman Cole
+        {localStorage.getItem("full_name")}
       </Button>
       <Menu
         id="menu-appbar"

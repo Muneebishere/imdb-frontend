@@ -12,7 +12,7 @@ export default function Detail(props) {
   const { show_detail, type } = props
 
   return (
-    <div className="ml-5 mr-5">
+    <div className="mr-5 mb-5">
       <Card className={classes.card}>
         <Grid container direction="row" justify="flex-start" alignItems="flex-start">
           <Grid item>
