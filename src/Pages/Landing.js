@@ -10,12 +10,19 @@ import PropTypes from 'prop-types';
 import * as Auth from '../services/Util';
 import AuthDialog from '../Components/AuthDialog';
 import history from '../history';
+import Typography from '@material-ui/core/Typography';
+import { themeColor, buttonTextColor } from '../Assets/styles/theme'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = theme => ({
   progressBar: {
-    marginTop: theme.spacing(8),
+    marginTop: "20px",
   },
-}));
+  title: {
+    fontWeight: "bold",
+    color: themeColor,
+    backgroundColor: buttonTextColor,
+  },
+});
 
 
 class Landing extends Component { 
@@ -55,7 +62,7 @@ class Landing extends Component {
       console.log(error)
     })
 
-    if (Auth.isSignedIn()){
+    if (this.props.loginStatus){
       http.getWatchlistIds()
       .then(res => {
         this.setState({ watchlist_ids: res.data.watchlist_ids })
@@ -119,7 +126,12 @@ class Landing extends Component {
       })
   }
 
+  handleClose = () => {
+    this.setState({dialogOpen: false})
+  };
+
   render() {
+    const { classes } = this.props;
     return(
       <div className="mt-4">
         <Grid container alignItems="center" direction="column" justify="center">
@@ -127,37 +139,56 @@ class Landing extends Component {
             <Search handleChange={this.searchFilms}/>
           </Grid>
 
-          <Grid item direction="row" container justify="space-evenly" className="mt-5">
-            {this.state.movies.length > 0 ? this.state.movies.map(movie => 
-              <FilmCard 
-                key={movie.id} 
-                show_detail={movie.show_detail} 
-                film_id={movie.id} 
-                watchlist_ids={this.state.watchlist_ids}
-                addToWatchlist={this.addToWatchlist}
-                removeFromWatchlist={this.removeFromWatchlist}
-                type="movie"/>
-            ) : (
-              <CircularProgress className="mt-5"/>
-            )}
-          </Grid>
-
-          <Grid item direction="row" container justify="space-evenly" className="mt-5">
-            {this.state.tv_shows.length > 0 ? this.state.tv_shows.map(tv_show => 
-              <FilmCard 
-                key={tv_show.id} 
-                show_detail={tv_show.show_detail} 
-                film_id={tv_show.id} 
-                watchlist_ids={this.state.watchlist_ids}
-                addToWatchlist={this.addToWatchlist}
-                removeFromWatchlist={this.removeFromWatchlist}
-                type="tv_show"/>
-            ) : (
-              <CircularProgress className="mt-5"/>
-            )}
-          </Grid>
+          {this.state.movies.length > 0 &&
+            <Grid item direction="column" container justify="center" className="mt-5">
+              <Typography variant="h5" className={classes.title} gutterBottom>
+                  Movies
+              </Typography>
+              <Grid item direction="row" container justify="space-evenly">
+                {this.state.movies.length > 0 ? this.state.movies.map(movie => 
+                  <FilmCard 
+                    key={movie.id} 
+                    show_detail={movie.show_detail} 
+                    film_id={movie.id} 
+                    watchlist_ids={this.state.watchlist_ids}
+                    addToWatchlist={this.addToWatchlist}
+                    removeFromWatchlist={this.removeFromWatchlist}
+                    type="movie"/>
+                
+                )  : (
+                  <CircularProgress className="mt-5"/>
+                )}
+              </Grid>
+            </Grid>
+            }
+            
+          {this.state.tv_shows.length > 0 &&
+            <Grid item direction="column" container justify="center" className="mt-5">
+              <Typography variant="h5" className={classes.title} gutterBottom>
+                Tv Shows
+              </Typography>
+              <Grid item direction="row" container justify="space-evenly">
+                {this.state.tv_shows.length > 0 ? this.state.tv_shows.map(tv_show => 
+                  <FilmCard 
+                    key={tv_show.id} 
+                    show_detail={tv_show.show_detail} 
+                    film_id={tv_show.id} 
+                    watchlist_ids={this.state.watchlist_ids}
+                    addToWatchlist={this.addToWatchlist}
+                    removeFromWatchlist={this.removeFromWatchlist}
+                    type="tv_show"/>
+                ) : (
+                  <CircularProgress className="mt-5"/>
+                )}
+              </Grid>
+            </Grid>
+          }
         </Grid>
-        <AuthDialog open={this.state.dialogOpen} goToLogin={this.goToLogin} goToSignup={this.goToSignup} />
+        <AuthDialog 
+          open={this.state.dialogOpen} 
+          goToLogin={this.goToLogin} 
+          goToSignup={this.goToSignup} 
+          handleClose={this.handleClose}/>
       </div>
     )}
 }

@@ -27,6 +27,20 @@ export const logoutUser = () => {
   })
 }
 
+export const authenticateTokens = () => {
+  const data = {
+    "access-token": localStorage.getItem("access-token"),
+    "client": localStorage.getItem("client"),
+    "uid": localStorage.getItem("uid"),
+    "expiry": localStorage.getItem("expiry"),
+    "token-type": localStorage.getItem("token-type")
+  }
+
+  return Http.get(urls.AUTHENTICATE_URL, { "data": data }, {
+    headers: headers
+  })
+}
+
 export const getMovies = (data = null) => {
   return Http.get(urls.MOVIES_URL, {params: {query: data}})
 }

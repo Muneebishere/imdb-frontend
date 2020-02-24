@@ -1,4 +1,4 @@
-import { themeColor, boxShadow } from './theme'
+import { themeColor, boxShadow, buttonTextColor } from './theme'
 
 export const watchlist = theme => ({
   title: {
@@ -7,5 +7,13 @@ export const watchlist = theme => ({
   },
   card: {
     boxShadow: boxShadow,
-  }
+  },
+  button: {
+    fontWeight: "bold",
+    backgroundColor: themeColor,
+    color: buttonTextColor,
+    '&:hover': {
+      backgroundColor: themeColor,
+    }
+  },
 });

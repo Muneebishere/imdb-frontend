@@ -34,7 +34,6 @@ class Navigation extends Component {
     super(props);
     this.state = {
       left: false,
-      watchlistCount: this.props.watchlistCount,
     }
   }
 
@@ -50,6 +49,10 @@ class Navigation extends Component {
     })
   }
 
+  goToLogin = () => {
+    history.push('/login')
+  }
+
   render(){
     const { classes, loginStatus } = this.props;
     let button;
@@ -57,7 +60,7 @@ class Navigation extends Component {
     if(!loginStatus) {
       button = <Button href="/login" color="inherit" className={classes.loginButton}>Login</Button>
     } else {
-      button = (<UserNavIcon handleLogout={this.handleLogout}/>)
+      button = (<UserNavIcon user={this.props.user} handleLogout={this.handleLogout}/>)
     }
 
     const toggleDrawer = (side, open) => event => {
@@ -75,36 +78,36 @@ class Navigation extends Component {
         onKeyDown={toggleDrawer(side, false)}
       >
         <List>
-          <ListItem button key={0}>
+          <ListItem button component="a" href="/" key={0}>
             <ListItemIcon>{<HomeIcon />}</ListItemIcon>
             <ListItemText primary={'Home'} />
           </ListItem>
-          <ListItem button key={1}>
+          <ListItem button disabled key={1}>
             <ListItemIcon>{<LocalMoviesIcon />}</ListItemIcon>
             <ListItemText primary={'Movies'} />
           </ListItem>
-          <ListItem button key={2}>
+          <ListItem button disabled key={2}>
             <ListItemIcon>{<MovieIcon />}</ListItemIcon>
             <ListItemText primary={'Tv Shows'} />
           </ListItem>
-          <ListItem button key={3}>
+          <ListItem button component="a" href="/watchlist" key={3}>
             <ListItemIcon>{<ListIcon />}</ListItemIcon>
             <ListItemText primary={'Your Watchlist'} />
           </ListItem>
-          <ListItem button key={4}>
+          <ListItem button disabled key={4}>
             <ListItemIcon>{<StarsIcon />}</ListItemIcon>
             <ListItemText primary={'Celebrities'} />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button key={5}>
+          <ListItem disabled button key={5}>
             <ListItemIcon>{<PersonIcon />}</ListItemIcon>
             <ListItemText primary={'Profile'} />
           </ListItem>
-          <ListItem button key={6}>
-            <ListItemIcon>{!this.state.loginStatus ? <LockOpenIcon /> : <ExitToAppIcon />}</ListItemIcon>
-            <ListItemText primary={!this.state.loginStatus ? 'Login' : 'Logout'} />
+          <ListItem button onClick={loginStatus ? this.handleLogout : this.goToLogin} key={6}>
+            <ListItemIcon>{loginStatus ? <ExitToAppIcon /> : <LockOpenIcon />}</ListItemIcon>
+            <ListItemText primary={loginStatus ? 'Logout' : 'Login'} />
           </ListItem>
         </List>
       </div>
@@ -141,7 +144,7 @@ class Navigation extends Component {
               <Grid item>
                 <div className="row">
                   <Button color="inherit" className={classes.watchListButton} href="/watchlist" >
-                    Watchlist <WatchListNavButton text={this.state.watchlistCount}/> 
+                    Watchlist <WatchListNavButton text={this.props.watchlistCount}/> 
                   </Button>
                   <Divider variant="middle" className={classes.divider} orientation="vertical" />
                   {button}

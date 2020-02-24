@@ -5,8 +5,8 @@ import CelebrityBioCard from '../Components/detail/CelebrityBioCard'
 import * as http from '../services/index';
 import CelebrityFilms from '../Components/detail/celebrityDetail/CelebrityFilms';
 import history from '../history';
-import * as Auth from '../services/Util';
 import AuthDialog from '../Components/AuthDialog';
+import { withRouter } from "react-router-dom";
 
 class Detail extends Component {
   constructor(props){
@@ -26,7 +26,7 @@ class Detail extends Component {
       this.setState({celebrity: res.data})
     })
 
-    if (Auth.isSignedIn()){
+    if (this.props.loginStatus){
       http.getWatchlistIds()
       .then(res => {
         this.setState({ watchlist_ids: res.data.watchlist_ids })
@@ -35,18 +35,17 @@ class Detail extends Component {
   }
 
   goToLogin = () => {
-    console.log("login")
     history.push('/login')
     this.setState({dialogOpen: false})
   };
 
   goToSignup = () => {
-    console.log("signup")
+    history.push("/signup")
     this.setState({dialogOpen: false})
   };
 
   addToWatchlist = (type, id) => {
-    if(Auth.isSignedIn()){
+    if(this.props.loginStatus){
       var params = {
         "add": true,
         "type": type,
@@ -81,6 +80,10 @@ class Detail extends Component {
       })
   }
 
+  handleClose = () => {
+    this.setState({dialogOpen: false})
+  };
+
   render(){
     if(this.state.celebrity){
       const celebrity = this.state.celebrity
@@ -101,7 +104,11 @@ class Detail extends Component {
               removeFromWatchlist={this.removeFromWatchlist}
             />
           </Grid>
-          <AuthDialog open={this.state.dialogOpen} goToLogin={this.goToLogin} goToSignup={this.goToSignup} />
+          <AuthDialog 
+            open={this.state.dialogOpen} 
+            goToLogin={this.goToLogin} 
+            goToSignup={this.goToSignup} 
+            handleClose={this.handleClose}/>
         </div>
       )
     } else {
@@ -110,4 +117,4 @@ class Detail extends Component {
   }
 }
 
-export default Detail;
+export default withRouter(Detail);

@@ -68,7 +68,7 @@ export default function FilmCardDetail(props){
                     Prev
                   </Button>
 
-                  <Button className={classes.typeBtn}>{type + " " + 1}</Button>
+                  <Button className={classes.typeBtn}>{type + " " + props.number}</Button>
                   <Button
                   variant="contained"
                   color="primary"

@@ -39,6 +39,7 @@ export default function Detail(props) {
               addToWatchlist={props.addToWatchlist}
               removeFromWatchlist={props.removeFromWatchlist}
               film_id={props.film_id}
+              number={props.number}
               seasons_on_watchlist={props.seasons_on_watchlist}
               epsiodes_on_watchlist={props.epsiodes_on_watchlist}
               />

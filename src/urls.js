@@ -1,5 +1,6 @@
 export const BASE_URL = 'http://localhost:3000';
 export const API_URL = BASE_URL + '/api/v1';
+export const AUTHENTICATE_URL = BASE_URL + '/auth/validate_token'
 export const LOGIN_URL = BASE_URL + '/auth/sign_in'
 export const LOGOUT_URL = BASE_URL + '/auth/sign_out'
 export const SIGNUP_URL = BASE_URL + '/auth'
