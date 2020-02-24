@@ -28,7 +28,7 @@ export default function AlignItemsList(props) {
   }
 
   return (
-    <div className="m-5">
+    <div className="mb-5 mr-5">
     <Card className={classes.root}>
       <List subheader={<ListSubheader className={classes.subHeading}>Cast ({getActorList().length})</ListSubheader>} className={classes.root}>
         {

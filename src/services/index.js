@@ -54,6 +54,10 @@ export const createMovies = data => {
   return Http.post(urls.MOVIES_URL, data, { headers: formheaders })
 }
 
+export const signupUser = data => {
+  return Http.post(urls.SIGNUP_URL, data, { headers: formheaders })
+}
+
 export const getWatchlistFilms = () => {
   return Http.get(urls.WATCHLIST_URL)
 }

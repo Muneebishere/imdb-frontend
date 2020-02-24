@@ -2,6 +2,7 @@ export const BASE_URL = 'http://localhost:3000';
 export const API_URL = BASE_URL + '/api/v1';
 export const LOGIN_URL = BASE_URL + '/auth/sign_in'
 export const LOGOUT_URL = BASE_URL + '/auth/sign_out'
+export const SIGNUP_URL = BASE_URL + '/auth'
 export const FILMS_URL = API_URL + '/films'
 export const MOVIES_URL = API_URL + '/movies'
 export const TV_SHOWS_URL = API_URL + '/tv_shows'

@@ -178,59 +178,65 @@ class Detail extends Component {
     if(this.state.film){
       const film = this.state.film
       return(
-        <div>        
-          <Grid container direction="row" justify="flex-start" alignItems="flex-start">
-            <FilmDetailCard 
-              show_detail={film.show_detail} 
-              genres={film.genres ? film.genres : []} 
-              reviewsCount={film.reviews.length} 
-              content_rating={film.content_rating}
-              type={this.state.type}
-              film_id={this.state.film.id}
-              nextPresent={this.state.film.next_id ? true : false}
-              prevPresent={this.state.film.prev_id ? true : false}
-              nextClickHandle={this.handleNextClick}
-              prevClickHandle={this.handlePrevClick}
-              on_watchlist={this.state.on_watchlist}
-              addToWatchlist={this.addToWatchlist}
-              removeFromWatchlist={this.removeFromWatchlist}/>
-            <DescriptionCard roles={film.celebrity_show_roles} plot={film.show_detail.plot}/>
-            {this.state.film.seasons && this.state.film.seasons.length > 0 && (
-              <Card className={`mt-5 mr-5 ml-5 p-2 ${classes.card}`}>
-                <Typography variant="h5" align="center" className={classes.title} gutterBottom>
-                  Seasons ({this.state.film.seasons.length}) 
-                </Typography>
-                <SeasonGrid 
-                  list={this.state.film.seasons} 
-                  showWatchListBtn={true} 
-                  type="season" 
-                  tvShowId={this.state.film.id}
-                  addToWatchlist={this.addToWatchlist}
-                  removeFromWatchlist={this.removeFromWatchlist}
-                  seasons_on_watchlist={this.state.seasons_on_watchlist}
-                  />
-              </Card>
-              )
-              }
-              {this.state.type === "season" && (
-              <Card className={`mt-5 mr-5 ml-5 p-2 ${classes.card}`}>
-                <Typography variant="h5" align="center" className={classes.title} gutterBottom>
-                  Episodes ({this.state.film.episodes.length}) 
-                </Typography>
-                <SeasonGrid 
-                  list={this.state.film.episodes} 
-                  showWatchListBtn={true} 
-                  type="episode" 
-                  seasonId={this.state.film.id}
-                  tvShowId={this.state.film.tv_show_id}
-                  addToWatchlist={this.addToWatchlist}
-                  removeFromWatchlist={this.removeFromWatchlist}
-                  episodes_on_watchlist={this.state.episodes_on_watchlist}/>
-              </Card>
-              )
-              }
-            <CastList roles={film.celebrity_show_roles}/>
-            <ReviewList reviews={film.reviews}/>
+        <div className="m-5">        
+          <Grid container direction="column" justify="flex-start" alignItems="flex-start">
+            <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+              <FilmDetailCard 
+                show_detail={film.show_detail} 
+                genres={film.genres ? film.genres : []} 
+                reviewsCount={film.reviews.length} 
+                content_rating={film.content_rating}
+                type={this.state.type}
+                film_id={this.state.film.id}
+                nextPresent={this.state.film.next_id ? true : false}
+                prevPresent={this.state.film.prev_id ? true : false}
+                nextClickHandle={this.handleNextClick}
+                prevClickHandle={this.handlePrevClick}
+                on_watchlist={this.state.on_watchlist}
+                addToWatchlist={this.addToWatchlist}
+                removeFromWatchlist={this.removeFromWatchlist}/>
+              <DescriptionCard roles={film.celebrity_show_roles} plot={film.show_detail.plot}/>
+            </Grid>
+            <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+              {this.state.film.seasons && this.state.film.seasons.length > 0 && (
+                <Card className={`mb-5 p-2 ${classes.card}`}>
+                  <Typography variant="h5" align="center" className={classes.title} gutterBottom>
+                    Seasons ({this.state.film.seasons.length}) 
+                  </Typography>
+                  <SeasonGrid 
+                    list={this.state.film.seasons} 
+                    showWatchListBtn={true} 
+                    type="season" 
+                    tvShowId={this.state.film.id}
+                    addToWatchlist={this.addToWatchlist}
+                    removeFromWatchlist={this.removeFromWatchlist}
+                    seasons_on_watchlist={this.state.seasons_on_watchlist}
+                    />
+                </Card>
+                )
+                }
+                {this.state.type === "season" && (
+                <Card className={`mb-5 p-2 ${classes.card}`}>
+                  <Typography variant="h5" align="center" className={classes.title} gutterBottom>
+                    Episodes ({this.state.film.episodes.length}) 
+                  </Typography>
+                  <SeasonGrid 
+                    list={this.state.film.episodes} 
+                    showWatchListBtn={true} 
+                    type="episode" 
+                    seasonId={this.state.film.id}
+                    tvShowId={this.state.film.tv_show_id}
+                    addToWatchlist={this.addToWatchlist}
+                    removeFromWatchlist={this.removeFromWatchlist}
+                    episodes_on_watchlist={this.state.episodes_on_watchlist}/>
+                </Card>
+                )
+                }
+            </Grid>
+            <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+              <CastList roles={film.celebrity_show_roles}/>
+              <ReviewList reviews={film.reviews}/>
+            </Grid>
           </Grid>
           <AuthDialog open={this.state.dialogOpen} goToLogin={this.goToLogin} goToSignup={this.goToSignup} />
         </div>

@@ -26,14 +26,14 @@ export default function AlignItemsList(props) {
   }
 
   return (
-    <div className="m-5">
+    <div className="mb-5">
     <List subheader={<ListSubheader className={classes.subHeading}>Cast ({getActorList().length})</ListSubheader>} className={classes.root}>
       {
         getActorList().map(role => (
           <div key={role.id}>
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
-              <Avatar className={classes.large} alt="Remy Sharp" src={urls.BASE_URL + role.celebrity_display_picture} />
+              <Avatar className={classes.large} alt={role.celebrity.full_name} src={urls.BASE_URL + role.celebrity_display_picture} />
             </ListItemAvatar>
             <ListItemText
               primary={role.celebrity.full_name}

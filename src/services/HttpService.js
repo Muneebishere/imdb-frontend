@@ -16,13 +16,20 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   data => {
-    if (data.config.url.includes("auth/")) {
-      updateLocalStorage(data.headers);
+    if (data.config.url.includes("/auth")) {
+      if (data.config.url.includes("sign_out")) {
+        localStorage.clear();
+      } else {
+        const user = data.data.data
+        updateLocalStorage(data.headers);
+        localStorage.setItem("id", user.id)
+        localStorage.setItem("full_name", user.first_name + " " + user.last_name)
+      } 
     }
     return data;
   },
   error => {
-    return error;
+    return Promise.reject(error);
   }
 );
 

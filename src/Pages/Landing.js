@@ -19,15 +19,12 @@ const useStyles = makeStyles(theme => ({
 
 
 class Landing extends Component { 
-  constructor(props){
-    super(props);
-    this.state = {
-      movies: [],
-      tv_shows: [],
-      searchText: null,
-      watchlist_ids: [],
-      dialogOpen: false
-    }
+  state = {
+    movies: [],
+    tv_shows: [],
+    searchText: null,
+    watchlist_ids: [],
+    dialogOpen: false
   }
 
   setMoviesAndTvShows = (data) => {
@@ -77,13 +74,12 @@ class Landing extends Component {
   }
 
   goToLogin = () => {
-    console.log("login")
     history.push('/login')
     this.setState({dialogOpen: false})
   };
 
   goToSignup = () => {
-    console.log("signup")
+    history.push('/signup')
     this.setState({dialogOpen: false})
   };
 
@@ -124,7 +120,6 @@ class Landing extends Component {
   }
 
   render() {
-    console.log(this.props)
     return(
       <div className="mt-4">
         <Grid container alignItems="center" direction="column" justify="center">

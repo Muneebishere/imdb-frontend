@@ -8,7 +8,7 @@ export default function OutlinedCard(props) {
   const classes = descriptionCard();
 
   return (
-    <Card className={classes.root}>
+    <Card className={`mb-5 ${classes.root}`}>
       <CardContent>
         <FilmPlot roles={props.roles} plot={props.plot}/>
       </CardContent>
