@@ -41,8 +41,20 @@ export const authenticateTokens = () => {
   })
 }
 
+export const removeUserAvatar = () => {
+  return Http.post(urls.REMOVE_AVATAR_URL)
+}
+
 export const getMovies = (data = null) => {
   return Http.get(urls.MOVIES_URL, {params: {query: data}})
+}
+
+export const getUserData = () => {
+  return Http.get(urls.USER_URL)
+}
+
+export const updateUserAvatar = (data) => {
+  return Http.put(urls.USER_URL, data, { headers: formheaders })
 }
 
 export const getFilms = (data = null) => {
@@ -106,4 +118,8 @@ export const getEpisodeDetails = (tv_show_id, season_id, id) => {
 
 export const updateWatchlistShows = (params) => {
   return Http.post(urls.UPDATE_WATCHLIST_URL, params, {headers: headers})
+}
+
+export const getAllCelebrities = (data = null) => {
+  return Http.get(urls.CELEBRITY_URL, {params: {query: data}})
 }

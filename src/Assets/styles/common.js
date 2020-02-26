@@ -11,6 +11,10 @@ export const commonStyles = makeStyles(theme => ({
   width100: {
     width: '100%'
   },
+  small: {
+    width: "25px !important",
+    height: "25px !important",
+  },
   title: {
     fontWeight: "bold",
     color: themeColor,
@@ -44,6 +48,8 @@ export const commonStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: buttonTextColor,
     }
+  },
+  capitalize:{
+    textTransform: 'capitalize',
   }
-
 }));

@@ -19,6 +19,10 @@ export const filmCard = makeStyles(theme => ({
     fontSize: 12,
     color: '#757575',
   },
+  title2: {
+    fontWeight: "bold",
+    color: themeColor
+  },
   title: {
     fontWeight: "bold",
   },
@@ -34,11 +38,13 @@ export const filmCard = makeStyles(theme => ({
     }
   },
   removeWatchlistBtn: {
+    textTransform: "none",
+    fontSize: "12px",
     fontWeight: "bold",
     backgroundColor: buttonTextColor,
     color: themeColor,
     '&:hover': {
       backgroundColor: buttonTextColor,
     }
-  }
+  },
 }));

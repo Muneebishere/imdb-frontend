@@ -78,30 +78,30 @@ class Navigation extends Component {
         onKeyDown={toggleDrawer(side, false)}
       >
         <List>
-          <ListItem button component="a" href="/" key={0}>
+          <ListItem button onClick={() => history.push("/")} key={0}>
             <ListItemIcon>{<HomeIcon />}</ListItemIcon>
             <ListItemText primary={'Home'} />
           </ListItem>
-          <ListItem button disabled key={1}>
+          <ListItem button onClick={() => this.props.handleTabValueChange(0)} key={1}>
             <ListItemIcon>{<LocalMoviesIcon />}</ListItemIcon>
             <ListItemText primary={'Movies'} />
           </ListItem>
-          <ListItem button disabled key={2}>
+          <ListItem button onClick={() => this.props.handleTabValueChange(1)} key={2}>
             <ListItemIcon>{<MovieIcon />}</ListItemIcon>
             <ListItemText primary={'Tv Shows'} />
           </ListItem>
-          <ListItem button component="a" href="/watchlist" key={3}>
+          <ListItem button onClick={() => history.push("/watchlist")} key={3}>
             <ListItemIcon>{<ListIcon />}</ListItemIcon>
             <ListItemText primary={'Your Watchlist'} />
           </ListItem>
-          <ListItem button disabled key={4}>
+          <ListItem button onClick={() => history.push("/celebrities")} key={4}>
             <ListItemIcon>{<StarsIcon />}</ListItemIcon>
             <ListItemText primary={'Celebrities'} />
           </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem disabled button key={5}>
+          <ListItem onClick={() => history.push("/profile")} button key={5}>
             <ListItemIcon>{<PersonIcon />}</ListItemIcon>
             <ListItemText primary={'Profile'} />
           </ListItem>

@@ -37,6 +37,7 @@ export const filmInfo = makeStyles(theme => ({
     }
   },
   removeWatchlistBtn: {
+    textTransform: "none",
     fontWeight: "bold",
     color: themeColor,
     marginLeft: "4px",

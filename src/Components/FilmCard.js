@@ -48,14 +48,14 @@ export default function FilmCard(props) {
               <Typography align="center" gutterBottom component="h3" className={`${classes.title} ${common.wrapText}`}>
                 <span variant="contained" color="primary" className={classes.yearRelased}>({release_date.getFullYear()})</span>
               </Typography>
-                <ReadonlyRating rating={props.show_detail.overall_rating}/>
+              <ReadonlyRating rating={props.show_detail.overall_rating}/>
             </CardContent>
         </CardActionArea>
         <CardActions>
           <Grid container justify="center" alignItems="center">
               { existsInWatchlist(props.film_id) ? (
                   <Button size="small" fullWidth color="primary" onClick={() => props.removeFromWatchlist("Film", props.film_id)} className={classes.removeWatchlistBtn}>
-                    <CheckCircleIcon fontSize='small'/> Added 
+                    <CheckCircleIcon fontSize='small'/> Added To Watchlist
                   </Button>
                   ) : (
                   <Button size="small" fullWidth color="primary" onClick={() => props.addToWatchlist("Film", props.film_id)} className={classes.watchlistButton}>
