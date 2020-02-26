@@ -95,7 +95,7 @@ export default function FilmCardDetail(props){
                 + Add to Watchlist
               </Button>) : (
               <Button size="small" fullWidth onClick={() => props.removeFromWatchlist(props.type, props.film_id)} color="primary" className={classes.removeWatchlistBtn}>
-                <CheckCircleIcon fontSize='small'/> Added 
+                <CheckCircleIcon fontSize='small'/> Added In Watchlist
               </Button>)
             }
             

@@ -104,7 +104,7 @@ class Login extends Component {
               color="primary"
               className={classes.submit}
             >
-              Sign Up
+              Login
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
@@ -126,3 +126,4 @@ Login.propTypes = {
 };
 
 export default withStyles(signup)(Login);
+

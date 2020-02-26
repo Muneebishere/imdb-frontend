@@ -17,6 +17,7 @@ class Search extends Component {
           label="Search IMDB"
           fullWidth={true}
           onChange={this.searchTextChanged}
+          value={this.props.searchText}
           InputProps={{
           endAdornment: (
             <InputAdornment>
